@@ -1,0 +1,37 @@
+{
+    "name": "hid-hd-wallet",
+    "version": "1.0.0",
+    "description": "",
+    "main": "dist/hid-hd-wallet.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "npm run prettier && webpack -p",
+        "build:dev": "npm run prettier && webpack --mode=development",
+        "prepare": "npm run prettier && npm run build",
+        "prettier": "prettier --config .prettierrc.json --write src/**/*.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "@cosmjs/proto-signing": "^0.28.4",
+        "@cosmjs/stargate": "^0.28.4"
+    },
+    "devDependencies": {
+        "@babel/cli": "7.10.1",
+        "@babel/core": "7.10.2",
+        "@babel/node": "7.10.1",
+        "@babel/plugin-proposal-export-default-from": "7.10.1",
+        "@babel/plugin-proposal-object-rest-spread": "7.10.1",
+        "@babel/plugin-transform-runtime": "7.10.1",
+        "@babel/preset-env": "7.10.2",
+        "@babel/register": "7.10.1",
+        "@babel/runtime": "^7.10.2",
+        "babel-loader": "^8.0.0-beta.2",
+        "babel-plugin-ramda": "^2.0.0",
+        "prettier": "^2.4.1",
+        "webpack": "^4.36.1",
+        "webpack-bundle-analyzer": "^3.6.1",
+        "webpack-cli": "3.3.8"
+    }
+}
