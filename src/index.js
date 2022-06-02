@@ -6,16 +6,10 @@ const axios = require('axios');
 module.exports = class HIDWallet {
     constructor({ hidNodeRPCUrl, hidNodeRestUrl, hidNodeFaucet = '' }) {
         this.prefix = 'hid';
-        this.hidNodeRPCUrl = hidNodeRPCUrl && hidNodeRPCUrl != '' ? this.sanitizeUrl(hidNodeRPCUrl) : HIDNODE_RPC;
-        this.hidNodeRestUrl = hidNodeRestUrl && hidNodeRestUrl != '' ? this.sanitizeUrl(hidNodeRestUrl) : HIDNODE_REST;
-        this.hidNodeFaucet = hidNodeFaucet && hidNodeFaucet != '' ? this.sanitizeUrl(hidNodeFaucet) : HIDNODE_FAUCET;
+        this.hidNodeRPCUrl = hidNodeRPCUrl && hidNodeRPCUrl != '' ? hidNodeRPCUrl : HIDNODE_RPC;
+        this.hidNodeRestUrl = hidNodeRestUrl && hidNodeRestUrl != '' ? hidNodeRestUrl : HIDNODE_REST;
+        this.hidNodeFaucet = hidNodeFaucet && hidNodeFaucet != '' ? hidNodeFaucet : HIDNODE_FAUCET;
         this.offlineSigner = null;
-    }
-
-    sanitizeUrl(url) {
-        if (url && url.endsWith('/')) {
-            return url.substring(0, url.length - 1);
-        } else return url;
     }
 
     async generateWallet({ mnemonic }) {
@@ -61,7 +55,7 @@ module.exports = class HIDWallet {
      */
     async getBalance() {
         const walletAddress = await this.getWalletAddress();
-        const url = this.hidNodeRestUrl + '/cosmos/bank/v1beta1/balances/' + walletAddress;
+        const url = this.hidNodeRestUrl + 'cosmos/bank/v1beta1/balances/' + walletAddress;
         const res = await axios.get(url);
 
         if (!res || !res.data || !res.data.balances || res.data.balances.length == 0) {
